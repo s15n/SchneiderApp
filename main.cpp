@@ -21,5 +21,7 @@ int main() {
 
     std::cout << "A zero point of this function is at: " << zp << std::endl;
 
+    system("pause");
+
     return 0;
 }
