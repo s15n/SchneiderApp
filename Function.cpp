@@ -4,6 +4,7 @@
 
 #include "Function.h"
 #include <cmath>
+#include <iostream>
 
 Function::Function(FunctionParser fp) {
     fParser = fp;
@@ -23,9 +24,21 @@ double Function::Derivative(double x) {
 }
 
 double Function::Newton(double x0) {
+    std::cout << "Calculating zero points..." << std::endl;
+
+    int n = 0;
     double xn = x0;
     while (abs(Value(xn)) > EPSILON) {
-        xn -= fParser.Eval(&xn)/Derivative(xn);
+        double fx = Value(xn);
+        double fdx = Derivative(xn);
+
+        std::cout << "    n: " << n << " ; xn: " << xn << " ; f(x): " << fx << " ; f'(x): " << fdx << std::endl;
+
+        xn -= fx / fdx;
+        n++;
     }
+
+    std::cout << "error: " << abs(Value(xn)) << std::endl;
+
     return xn;
 }
