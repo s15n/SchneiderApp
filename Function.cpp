@@ -10,18 +10,22 @@ Function::Function(FunctionParser fp) {
 }
 
 double Function::operator()(double x) {
+    return Value(x);
+}
+
+inline double Function::Value(double x) {
     return fParser.Eval(&x);
 }
 
-double Function::derivative(double x) {
+double Function::Derivative(double x) {
     double xpd = x+DELTA;
-    return ((fParser.Eval(&xpd) - fParser.Eval(&x)) / DELTA);
+    return ((Value(xpd) - Value(x)) / DELTA);
 }
 
-double Function::newton(double x0) {
+double Function::Newton(double x0) {
     double xn = x0;
-    while (abs(fParser.Eval(&xn)) > EPSILON) {
-        xn -= fParser.Eval(&xn)/derivative(xn);
+    while (abs(Value(xn)) > EPSILON) {
+        xn -= fParser.Eval(&xn)/Derivative(xn);
     }
     return xn;
 }

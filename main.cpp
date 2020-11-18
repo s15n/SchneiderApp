@@ -4,7 +4,7 @@
 
 int main() {
     Parser parser = Parser();
-    Function f = parser.parse("x^2");
-    std::cout << f(1) << " --- " << f.derivative(1) << std::endl;
+    Function f = parser.parse("sin(x)");
+    std::cout << f(1) << " --- " << f.Newton(5) << std::endl;
     return 0;
 }
