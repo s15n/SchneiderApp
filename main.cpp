@@ -1,12 +1,10 @@
 #include <iostream>
 
-#include "fparser4.5.2/fparser.hh"
+#include "Parser.h"
 
 int main() {
-    FunctionParser fp;
-    fp.Parse("x+y", "x,y");
-    double variables[2] = { 1.5, 2.9 };
-    double result = fp.Eval(variables);
-    std::cout << result << std::endl;
+    Parser parser = Parser();
+    Function f = parser.parse("x^2");
+    std::cout << f(5) << std::endl;
     return 0;
 }
