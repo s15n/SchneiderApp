@@ -3,14 +3,17 @@
 //
 #include "fparser4.5.2/fparser.hh"
 
+#define DELTA 0.001
+
 #ifndef SCHNEIDERAPP_FUNCTION_H
 #define SCHNEIDERAPP_FUNCTION_H
 
 
 class Function {
 public:
-    Function(FunctionParser fp);
+    explicit Function(FunctionParser fp);
     double operator()(double x);
+    double operator[](double x);
 private:
     FunctionParser fParser;
 };
